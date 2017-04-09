@@ -3,4 +3,6 @@
 
 flask flask_sqlalchemy flask_login
 
-运行 ./run.py
+运行 source flask/bin/activate
+
+./run.py
