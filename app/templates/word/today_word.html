@@ -1,0 +1,53 @@
+<!-- extend base layout -->
+{% extends "word/word_base.html" %}
+
+{% block content %}
+    <!-- About Section -->
+
+<section class="library" >
+    <div class="container">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{{ url_for('word.today_word') }}">今日单词</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{{ url_for('word.new_word') }}">新的单词</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="{{ url_for('word.learned_word') }}">掌握单词</a>
+                    </li>
+                </ul>
+            </div>
+
+    </div>
+</section>
+    <div class="container">
+
+        <div class="row">
+            {% if words %}
+            {% for word in words %}
+            <!--<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">-->
+            <!--</a>-->
+
+            <div class="col-sm-4 portfolio-item">
+
+                <p>{{ word.word }}:{{ word.learned }}</p>
+
+            </div>
+
+            {% endfor %}
+            {% else %}
+            <p>你没有收藏单词书</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<!-- extend base layout -->
+{% extends "word/word_base.html" %}
+
+{% block content %}
+    <!-- About Section -->
+    <div class="container">
+
+        <h3>背单词设置</h3>
+        <br>
+        <table>
+            <tbody>
+            <tr>
+                <th>
+                <label for="id-level">正在学习：</label>
+                </th>
+                <td>
+                <p>{{ learning_wordbook }}<span><a href="{{ url_for('word.wordbook') }}">更改</a></span></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                <label for="id-level">每日学习量：</label>
+                </th>
+                <td>
+                    <select id="id-quota" name="quota">
+                        {% for amount in amounts %}
+                            {% if amount == today_words_amount %}
+                                <option value= {{ amount }} selected="selected">{{ amount }}</option>
+                            {% else %}
+                                <option value= {{ amount }}>{{ amount }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button id= "setting-word" class="btn btn-success btn-lg" type="submit">确定</button>
+        <a href="{{ url_for('word.word') }}" class="cancel">取消</a>
+    </div>
+    {% endblock %}

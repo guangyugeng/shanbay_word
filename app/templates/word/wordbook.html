@@ -1,0 +1,93 @@
+<!-- extend base layout -->
+{% extends "word/word_base.html" %}
+
+{% block content %}
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>正在学习的单词书</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+
+
+
+                        {% if learning_wordbook %}
+                        <p>{{ learning_wordbook }}</p>
+                        {% else %}
+                        <p>你没有学习的单词书</p>
+                        {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>我收藏的单词书</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+            {% if my_wordbooks %}
+            {% for my_wordbook in my_wordbooks %}
+                {% if learning_wordbook != my_wordbook %}
+                    <div class="col-sm-4 portfolio-item">
+                        <p>{{ my_wordbook }}</p>
+                        <button id="{{ my_wordbook }}" class="btn btn-success btn-lg my-wordbook" type="submit">开始学习</button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <p>你没有收藏单词书</p>
+            {% endif %}
+            </div>
+            <div class="row">
+                <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>增加单词书</h2>
+                    <hr class="star-primary">
+                </div>
+                </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th>
+                                    <label for="id-level">单词书：</label>
+                                    </th>
+                                    <td>
+                                        <select id="book_name" name="quota">
+                                            <option value= "CET-4" selected="selected">CET-4</option>
+                                            <option value= "CET-6" >CET-6</option>
+                                            <option value= "TOEFL" >TOEFL</option>
+                                            <option value= "IELTS" >IELTS</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button id="add-wordbook" type="submit" class="btn btn-success btn-lg">Send</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% endblock %}

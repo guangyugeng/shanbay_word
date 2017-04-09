@@ -1,0 +1,16 @@
+<!-- extend base layout -->
+{% extends "word/word_base.html" %}
+
+{% block content %}
+    <!-- About Section -->
+
+    <div class="word-container">
+        <div class="start-cell cell item">
+        <h1>{{ user.today_words_amount }}
+        <small>今日单词</small>
+        </h1>
+        <button id= 'start-learn' class="btn btn-success btn-lg">开始学习</button>
+        </div>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,29 @@
+<!-- extend base layout -->
+{% extends "base/base.html" %}
+
+{% block content %}
+    <!-- About Section -->
+<section class="contact" >
+    <div class="container">
+        <table>
+        <tr valign="top">
+        <td><img src="{{user.avatar(128)}}"></td>
+        <td>
+            <h1>昵称: {{user.nickname}}</h1>
+            {% if user.user_info %}<p>{{user.user_info}}</p>{% endif %}
+            {% if user.last_seen %}<p><i>最后游览: {{user.last_seen}}</i></p>{% endif %}
+            {% if user.id == g.user.id %}<p><a href="{{url_for('user.edit_user')}}">Edit</a></p>{% endif %}
+
+        </td>
+        </tr>
+        </table>
+        <hr>
+    {% if learning_wordbook %}
+        <p>正在学习：{{ learning_wordbook }}</p>
+    {% else %}
+        <p>你没有选择</p>
+    {% endif %}
+
+    </div>
+</section>
+    {% endblock %}
