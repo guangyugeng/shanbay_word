@@ -26,7 +26,8 @@ def user(username):
 
     return render_template('user/user.html',
         user = user,
-        learning_wordbook = learning_wordbook)
+        learning_wordbook = learning_wordbook
+                           )
 
 
 

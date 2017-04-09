@@ -36,7 +36,7 @@ def login_view():
     else:
         return render_template('general/login.html',
         title = 'Sign In',
-        )
+                                )
 
 @main.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -59,4 +59,3 @@ def internal_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('base/500.html'), 500
-#

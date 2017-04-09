@@ -45,12 +45,10 @@ def wordbook():
 @login_required
 def setting():
     user = g.user
-
-    # my_wordbooks = ["CET-4","CET-6","TOEFL"]
     today_words_amount = str(user.today_words_amount)
-    print(today_words_amount)
     learning_wordbook = user.learning_wordbook
     amounts = ['20', '50', '100', '150', '200', '250', '300', '400', '500', '600', '700']
+
     return render_template('word/setting.html',
         title = 'Home',
         user = user,
@@ -67,11 +65,9 @@ def new_word():
     wordbook = Wordbook.query.filter_by(book_name=user.learning_wordbook,user_id=user.id).first()
     words = Word.query.filter_by(wordbook_id=wordbook.id,learned=False).all()
 
-    print(words)
-    # for v,w in words.item():
-    #     print(w)
     return render_template('word/new_word.html',
-        words = words)
+        words = words
+                           )
 
 
 @main.route('/today_word')
@@ -79,69 +75,11 @@ def new_word():
 def today_word():
     user = g.user
     today_wordbook_id = update_today_words(user, 100)
-    # wordbook = Wordbook.query.filter_by(book_name=user.learning_wordbook,user_id=user.id).first()
-    # form = {
-    #     'user_id': user.id,
-    #     'wordbook_id': wordbook.id
-    # }
-    # today_wordbook = TodayWordbook(form)
-    # if today_wordbook.exist():
-    #     print('exist')
-    #     print(len(TodayWordbook.query.filter_by(wordbook_id=wordbook.id,user_id=user.id).all()))
-    #     db_today_wordbook = TodayWordbook.query.filter_by(wordbook_id=wordbook.id,user_id=user.id).first()
-    # else:
-    #     today_wordbook.save()
-    #     db_today_wordbook = TodayWordbook.query.filter_by(wordbook_id=wordbook.id,user_id=user.id).first()
-    #
-    #     unknown_words = Word.query.filter_by(wordbook_id=wordbook.id,learned=False).all()
-    #     count = 0
-    #     for w in unknown_words:
-    #         wf = {
-    #             'word':w.word,
-    #             'translated':w.translated,
-    #             'example':w.example,
-    #             'example_cn':w.example_cn
-    #         }
-    #         today_word = TodayWord(wf, db_today_wordbook.id)
-    #         print(today_word)
-    #         today_word.save()
-    #         print(today_word.today_wordbook_id)
-    #         count += 1
-    #         if count == 100:
-    #             break
-        # db_today_wordbook.save()
-
-    # db_today_wordbook.delete()
-
-    # print(today_wordbook.id,db_today_wordbook.id)
-    # print(today_wordbook.wordbook_id,wordbook.id)
-    # print(today_wordbook.user_id,user.id)
-    # db_today_wordbook.delete()
-
     today_words = TodayWord.query.filter_by(today_wordbook_id=today_wordbook_id).all()
-    # /
-    # words = TodayWord.query.filter_by().all()
-    # for w in words:
-    #     # uw = TodayWord.query.filter_by(w).all()
-    #     w.delete()
 
-# user_id = db.Column(db.Integer)
-#     wordbook_id
-    # wordbook = [
-    #     {
-    #         'word': 'Beautiful',
-    #         'translated': { 'adj': '漂亮' }
-    #     },
-    #     {
-    #         'word': 'Apple',
-    #         'translated': { 'n': '苹果' }
-    #     }
-    # ]
-    # print(today_words)
-    # for v,w in words.item():
-    #     print(w)
     return render_template('word/today_word.html',
-        words = today_words)
+        words = today_words
+                           )
 
 
 @main.route('/learned_word')
@@ -151,10 +89,7 @@ def learned_word():
     wordbook = Wordbook.query.filter_by(book_name=user.learning_wordbook,user_id=user.id).first()
     words = Word.query.filter_by(wordbook_id=wordbook.id,learned=True).all()
 
-
-    print(words)
-    # for v,w in words.item():
-    #     print(w)
     return render_template('word/learned_word.html',
-        words = words)
+        words = words
+                           )
 
